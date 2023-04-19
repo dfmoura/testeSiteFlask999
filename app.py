@@ -22,6 +22,15 @@ def dolarptax():
 
 
 
+@app.route("/dolaratual1", methods=["POST"])
+def valorUSD_BRL():
+    requisicao = requests.get("https://economia.awesomeapi.com.br/last/USD-BRL,EUR-BRL,BTC-BRL")
+    dic_requisicao = requisicao.json()
+    dolaratual = dic_requisicao['USDBRL']['bid']
+    return render_template("index.html", dolaratual=dolaratual)
+
+
+
 
 
 if __name__ == '__main__':
