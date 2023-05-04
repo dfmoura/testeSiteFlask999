@@ -30,6 +30,24 @@ def valorUSD_BRL():
     return render_template("index.html", dolaratual=dolaratual)
 
 
+@app.rout("/cnpj", methods=["POST"])
+def consulta_cnpj(cnpj): 
+    
+    url = f"https://www.receitaws.com.br/v1/cnpj/{cnpj}"
+    querystring = {"token":"XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX","cnpj":"06990590000123","plugin":"RF"}
+    response = requests.request("GET", url, params=querystring)
+    response1 = response.json()
+    cnpj_show = response1['capital_social']['nome']['municipio']['uf']
+    #resp = json.loads(response.text)
+    #print(response.text)
+    #print(resp['atividade_principal'])
+    #resp['capital_social'], resp['nome'], resp['logradouro'], resp['numero'], resp['complemento'], resp['bairro'], resp['municipio'], resp['uf'], resp['cep'], resp['telefone'], resp['email']    
+    return render_template("index.html", cnpj_show = cnpj_show)
+consulta_cnpj('22685341000180')
+
+
+
+
 
 
 
