@@ -37,7 +37,8 @@ def consulta_cnpj(cnpj):
     querystring = {"token":"XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX","cnpj":"06990590000123","plugin":"RF"}
     response = requests.request("GET", url, params=querystring)
     response1 = response.json()
-    cnpj_show = response1['capital_social']['nome']['municipio']['uf']
+    cnpj_show = response1['capital_social']
+    #['nome']['municipio']['uf']
     #resp = json.loads(response.text)
     #print(response.text)
     #print(resp['atividade_principal'])
