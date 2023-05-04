@@ -31,9 +31,8 @@ def valorUSD_BRL():
     return render_template("index.html", dolaratual=dolaratual)
 
 
-@app.route("/cnpj", methods=["POST"])
-def get_receita(cnpj): 
-    
+@app.route('/get_data', methods=['POST'])
+def get_data():
     conn = http.client.HTTPSConnection("receitaws.com.br")
     headers = { 'Accept': "application/json" }
     conn.request("GET", "/v1/cnpj/06990590000123", headers=headers)

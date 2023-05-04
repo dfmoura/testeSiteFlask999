@@ -57,10 +57,22 @@
 <br>
 <br>
 <h5>
-    <form action="/cnpj" method="POST">
-        <button>Consultar CNPJ</button>
-    </form>
-    {{headers}}
+    <button onclick="getData()">Get Data</button>
+    <p id="data"></p>
+
+    <script>
+        function getData() {
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', '/get_data');
+            xhr.setRequestHeader('Content-Type', 'application/json');
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    document.getElementById('data').innerHTML = xhr.responseText;
+                }
+            };
+            xhr.send();
+        }
+    </script>
 </h5>
     
 
