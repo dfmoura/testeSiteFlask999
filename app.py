@@ -30,7 +30,7 @@ def valorUSD_BRL():
     return render_template("index.html", dolaratual=dolaratual)
 
 
-@app.rout("/cnpj", methods=["POST"])
+@app.route("/cnpj", methods=["POST"])
 def consulta_cnpj(cnpj): 
     
     url = f"https://www.receitaws.com.br/v1/cnpj/{cnpj}"
