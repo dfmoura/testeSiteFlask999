@@ -33,10 +33,9 @@ def valorUSD_BRL():
 
 @app.route('/get_data', methods=['POST'])
 def get_data():
-    cnpj = request.form.get('cnpj')  # Retrieve the 'cnpj' value from the HTML form
     conn = http.client.HTTPSConnection("receitaws.com.br")
     headers = { 'Accept': "application/json" }
-    conn.request("GET", f"/v1/cnpj/{cnpj}", headers=headers)
+    conn.request("GET", "/v1/cnpj/06990590000123", headers=headers)
     res = conn.getresponse()
     data = res.read()
     return data.decode("utf-8")

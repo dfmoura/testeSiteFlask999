@@ -59,37 +59,21 @@
 <h5>
     Consulta somente 3 por minuto... api do site: https://www.receitaws.com.br/ <br><br>
 
-    <form action="/get_data" method="POST">
-        <label>CNPJ:</label>
-        <input type="text" name="cnpj">
-
-        <button type="submit">Get Data</button>
-    </form>
+    <button onclick="getData()">Get Data</button>
     <p id="data"></p>
 
     <script>
-        // Disable form submission
-        document.querySelector('form').addEventListener('submit', function(event) {
-            event.preventDefault();
-        });
-
-        // Handle response from server
-        function handleResponse(response) {
-            document.getElementById('data').innerHTML = response;
+        function getData() {
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', '/get_data');
+            xhr.setRequestHeader('Content-Type', 'application/json');
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    document.getElementById('data').innerHTML = xhr.responseText;
+                }
+            };
+            xhr.send();
         }
-
-        // Send request to server on form submit
-        document.querySelector('form').addEventListener('submit', function(event) {
-            event.preventDefault();
-            var form = new FormData(event.target);
-            fetch(event.target.action, {
-                method: 'POST',
-                body: form
-            })
-            .then(response => response.text())
-            .then(data => handleResponse(data))
-            .catch(error => console.error(error));
-        });
     </script>
 </h5>
 
