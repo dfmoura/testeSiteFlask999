@@ -35,7 +35,7 @@ def valorUSD_BRL():
 def get_data():
     conn = http.client.HTTPSConnection("receitaws.com.br")
     headers = { 'Accept': "application/json" }
-    conn.request("GET", f"/v1/cnpj/{requests.json['cnpj']}", headers=headers)
+    conn.request("GET", f"/v1/cnpj/{request.json['cnpj']}", headers=headers)
     res = conn.getresponse()
     data = res.read()
     return data.decode("utf-8")
